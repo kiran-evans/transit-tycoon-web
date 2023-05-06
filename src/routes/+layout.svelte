@@ -2,6 +2,7 @@
 	import { browser } from "$app/environment";
 	import { writable } from "svelte/store";
 	import "../app.css";
+	import Button from "../components/Button.svelte";
 	import Toggle from "../components/Toggle.svelte";
     
 let checked = writable(false);
@@ -12,10 +13,10 @@ $: if (browser) { $checked ? document.documentElement.classList.add('dark') : do
 
 <div class="
     bg-blue-100
-    text-black
+    text-blue-900
 
-    dark:bg-gray-900
-    dark:text-gray-50
+    dark:bg-blue-900
+    dark:text-blue-100
 
     h-screen
     flex
@@ -23,18 +24,28 @@ $: if (browser) { $checked ? document.documentElement.classList.add('dark') : do
 ">
 
 <header class="
-    bg-blue-300
-    text-900
-
-    dark:bg-blue-900
-    dark:text-blue-200
-
     flex
     align-center
-    justify-center
+    justify-between
     flex-[1]
     p-2
+    border-b-2
+
+    border-blue-900
+    dark:border-blue-100
 ">
+
+    <Button>Login</Button>
+
+    <h1 class="
+        flex
+        items-center
+        text-3xl
+        font-black
+        uppercase
+    ">
+        Transit Tycoon
+    </h1>
 
     <Toggle label="Dark mode" bind:checked={$checked} size={1} />
 
