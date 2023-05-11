@@ -2,8 +2,8 @@
 	import { browser } from "$app/environment";
 	import { writable } from "svelte/store";
 	import "../app.css";
-	import Button from "../components/Button.svelte";
-	import Toggle from "../components/Toggle.svelte";
+	import Button from "../components/common/Button.svelte";
+	import Toggle from "../components/common/Toggle.svelte";
     
 let checked = writable(false);
 
