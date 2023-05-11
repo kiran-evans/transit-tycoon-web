@@ -1,8 +1,17 @@
 <script lang="ts">
+	import { Time } from "$lib/Time";
 	import Column from "./common/Column.svelte";
 	import Container from "./common/Container.svelte";
+	import P from "./common/P.svelte";
 	import PurchaseButton from "./game/PurchaseButton.svelte";
 
+    let time = new Time();
+    
+    $: setTimeout(() => {
+        time.doHour();
+        time = time;
+    }, 2500);
+    
 
 </script>
 
@@ -18,7 +27,9 @@
         w-full
 ">
     <Column title="Info">
-        Riders:
+        <P>Riders:</P>
+        <P>Time: {time.getTimeString()}</P>
+        <P>Day: {time.getDayString()}</P>
     </Column>
     <Column title="Services">
     
