@@ -4,11 +4,8 @@
 
 <button
     class="
-        text-blue-900
-        border-blue-900
-        
-        dark:text-blue-100
-        dark:border-blue-100
+        text-blue-300
+        border-blue-300
 
         bg-none
         px-2

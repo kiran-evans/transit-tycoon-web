@@ -6,5 +6,11 @@
 
 <!-- Render conditionally depending on auth state -->
 <ContextProvider>
-    <Game />
+    <div class="
+        h-full
+        flex
+        flex-col
+    ">
+        <Game />
+    </div>
 </ContextProvider>

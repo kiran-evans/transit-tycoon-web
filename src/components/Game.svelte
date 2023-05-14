@@ -6,6 +6,7 @@
 	import Column from "./common/Column.svelte";
 	import Container from "./common/Container.svelte";
 	import P from "./common/P.svelte";
+	import Bank from "./game/Bank.svelte";
 	import PurchaseButton from "./game/PurchaseButton.svelte";
     
     let gameState: Writable<GameState> = getContext('gameState');
@@ -19,18 +20,24 @@
 </script>
 
 <div class="
-    bg-gray-200
-    dark:bg-gray-900
+    bg-black
     flex
-    h-full
+    flex-1
+    align-center
+    justify-center
+">
+    <Container>
+        <Bank />
+    </Container>
+</div>
+
+<div class="
+    bg-gray-900
+    flex
+    flex-[8]
 ">
 
-<Container className="
-        flex
-        w-full
-">
     <Column title="Info">
-        <P>Bank: £{new Intl.NumberFormat('en-GB').format($gameState.bank)}</P>
         <P>Riders: {$gameState.riders}</P>
         <P>Time: {$gameState.time.getTimeString()}</P>
         <P>Day: {$gameState.time.getDayString()}</P>
@@ -38,10 +45,17 @@
     </Column>
 
     <Column title="Services">
+    {#each $gameState.services as service}
+        <P>{service.id}</P>
+    {/each}
+
+    </Column>
+
+    <Column title="Garage">
     {#each $gameState.vehicles as vehicle}
         <P>{vehicle.id}</P>
     {/each}
-    
+
     </Column>
 
     <Column title="Store">
@@ -54,6 +68,5 @@
             <PurchaseButton imgUrl="bus.png" label="Tram" price={5000} vehicleType={VehicleType.TRAM} />
         </div>
     </Column>
-</Container>
 
 </div>

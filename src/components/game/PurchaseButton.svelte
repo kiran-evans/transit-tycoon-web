@@ -26,8 +26,7 @@
     flex
     gap-2
     border-2
-    border-blue-900
-    dark:border-blue-200
+    border-blue-300
     rounded
     pr-2
     py-2
