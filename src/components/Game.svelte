@@ -1,18 +1,15 @@
 <script lang="ts">
-	import type { State } from "$lib/GameState";
+	import type { GameState } from "$lib/GameState";
 	import { Time } from "$lib/Time";
 	import { VehicleType } from "$lib/Vehicle";
 	import { getContext } from "svelte";
+	import type { Writable } from "svelte/store";
 	import Column from "./common/Column.svelte";
 	import Container from "./common/Container.svelte";
 	import P from "./common/P.svelte";
 	import PurchaseButton from "./game/PurchaseButton.svelte";
     
-    let { game } = getContext('state') as State;
-    let gameState = {} as any;
-    $: game.subscribe(g => {
-        gameState = { ...g };
-    });
+    let gameState: Writable<GameState> = getContext('gameState');
 
     let time = new Time();
     
@@ -36,14 +33,14 @@
         w-full
 ">
     <Column title="Info">
-        <P>Bank: £{new Intl.NumberFormat('en-GB').format(gameState.bank)}</P>
-        <P>Riders: {gameState.riders}</P>
+        <P>Bank: £{new Intl.NumberFormat('en-GB').format($gameState.bank)}</P>
+        <P>Riders: {$gameState.riders}</P>
         <P>Time: {time.getTimeString()}</P>
         <P>Day: {time.getDayString()}</P>
     </Column>
 
     <Column title="Services">
-    {#each gameState.vehicles as vehicle}
+    {#each $gameState.vehicles as vehicle}
         <P>{vehicle.id}</P>
     {/each}
     

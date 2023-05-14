@@ -1,24 +1,22 @@
 <script lang="ts">
-	import type { State } from "$lib/GameState";
+	import type { GameState } from "$lib/GameState";
 	import { Vehicle, VehicleType } from "$lib/Vehicle";
 	import { generateUid } from "$lib/common";
 	import { getContext } from "svelte";
+	import type { Writable } from "svelte/store";
 
 	export let imgUrl: string;
     export let label: string;
     export let price: number;
     export let vehicleType: VehicleType;
 
-    let { game, dispatch } = getContext('state') as State;
+    let gameState: Writable<GameState> = getContext('gameState');
 
-    const purchase = () => {
-        game.subscribe(g => {
-            let newGameState = {...g};
-            newGameState.bank -= price;
-            newGameState.vehicles.push(new Vehicle(generateUid(), label, vehicleType, 50));
-            console.log(newGameState);
-            dispatch('setGame', newGameState);
-        });
+    $: purchase = () => {
+        let newGameState = { ...$gameState };
+        newGameState.bank -= price;
+        newGameState.vehicles.push(new Vehicle(generateUid(), label, vehicleType, 50));
+        $gameState = newGameState;
     }
 </script>
 
