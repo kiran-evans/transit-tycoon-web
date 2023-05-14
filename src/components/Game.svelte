@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { GameState } from "$lib/GameState";
-	import { Time } from "$lib/Time";
 	import { VehicleType } from "$lib/Vehicle";
 	import { getContext } from "svelte";
 	import type { Writable } from "svelte/store";
@@ -10,12 +9,10 @@
 	import PurchaseButton from "./game/PurchaseButton.svelte";
     
     let gameState: Writable<GameState> = getContext('gameState');
-
-    let time = new Time();
     
     $: setTimeout(() => {
-        time.doHour();
-        time = time;
+        $gameState.time.doHour();
+        $gameState = $gameState;
     }, 2500);
     
 
@@ -35,8 +32,9 @@
     <Column title="Info">
         <P>Bank: £{new Intl.NumberFormat('en-GB').format($gameState.bank)}</P>
         <P>Riders: {$gameState.riders}</P>
-        <P>Time: {time.getTimeString()}</P>
-        <P>Day: {time.getDayString()}</P>
+        <P>Time: {$gameState.time.getTimeString()}</P>
+        <P>Day: {$gameState.time.getDayString()}</P>
+        <P>Week: {$gameState.time.getWeekString()}</P>
     </Column>
 
     <Column title="Services">

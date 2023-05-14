@@ -24,6 +24,10 @@ export class Time {
         if (time > 12) return time - 12 + "PM";
         return time + "AM";
     }
+
+    public getWeekString = (): string => {
+        return String(Math.ceil(this.hour / 24 / 7));
+    }
 }
 
 export enum Day {
