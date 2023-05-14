@@ -18,15 +18,16 @@ export class Time {
 
     public getTimeString = (): string => {
         const time = Math.floor(this.hour % 24);
+        let timeString = "";
         
-        if (time === 0) return "12AM";
-        if (time === 12) return "12PM";
-        if (time > 12) return time - 12 + "PM";
-        return time + "AM";
+        if (time < 10) timeString += "0";
+        timeString += time;
+        timeString += ":00";
+        return timeString;
     }
 
     public getWeekString = (): string => {
-        return String(Math.ceil(this.hour / 24 / 7));
+        return "Week " + String(Math.ceil(this.hour / 24 / 7));
     }
 }
 

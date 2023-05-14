@@ -14,7 +14,7 @@
 
     $: purchase = () => {
         let newGameState = { ...$gameState };
-        newGameState.bank -= price;
+        newGameState.bank.balance -= price;
         newGameState.vehicles.push(new Vehicle(generateUid(), label, vehicleType, 50));
         $gameState = newGameState;
     }

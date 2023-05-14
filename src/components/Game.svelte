@@ -7,6 +7,7 @@
 	import Container from "./common/Container.svelte";
 	import P from "./common/P.svelte";
 	import Bank from "./game/Bank.svelte";
+	import Clock from "./game/Clock.svelte";
 	import PurchaseButton from "./game/PurchaseButton.svelte";
     
     let gameState: Writable<GameState> = getContext('gameState');
@@ -23,9 +24,13 @@
     bg-black
     flex
     flex-1
-    align-center
-    justify-center
+    justify-between
+    items-center
 ">
+    <Container>
+        <Clock />
+    </Container>
+
     <Container>
         <Bank />
     </Container>
@@ -39,9 +44,6 @@
 
     <Column title="Info">
         <P>Riders: {$gameState.riders}</P>
-        <P>Time: {$gameState.time.getTimeString()}</P>
-        <P>Day: {$gameState.time.getDayString()}</P>
-        <P>Week: {$gameState.time.getWeekString()}</P>
     </Column>
 
     <Column title="Services">
