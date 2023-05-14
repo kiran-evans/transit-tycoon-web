@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { GameState } from "$lib/GameState";
-	import { VehicleType } from "$lib/Vehicle";
+	import { Vehicle, VehicleType } from "$lib/Vehicle";
 	import { getContext } from "svelte";
 	import type { Writable } from "svelte/store";
 	import Column from "./common/Column.svelte";
@@ -15,9 +15,17 @@
     $: counter = setTimeout(() => {
             $gameState.time.doHour();
             $gameState = $gameState;
-        }, 2500);
+        }, 2500); // 2500ms - one "hour" of in-game time = one minute in real time
 
-    clearTimeout(counter);    
+    clearTimeout(counter);
+
+    $: getTotalCapacity = (): number => {
+        let total = 0;
+        $gameState.vehicles.forEach(v => {
+            total += v.capacity;
+        });
+        return total;
+    }
 
 </script>
 
@@ -45,6 +53,7 @@
 
     <Column title="Info">
         <P>Riders: {$gameState.riders}</P>
+        <P>Capacity: {getTotalCapacity()}</P>
     </Column>
 
     <Column title="Services">
@@ -66,9 +75,10 @@
             flex
             flex-col
         ">
-            <PurchaseButton imgUrl="bus.png" label="Bus" price={500} vehicleType={VehicleType.BUS} />
-            <PurchaseButton imgUrl="bus.png" label="Trolleybus" price={1000} vehicleType={VehicleType.TROLLEYBUS} />
-            <PurchaseButton imgUrl="bus.png" label="Tram" price={5000} vehicleType={VehicleType.TRAM} />
+            <PurchaseButton imgUrl="bus.png" thisVehicle={new Vehicle("", "Bus", VehicleType.BUS, 50, 500)} />
+            <PurchaseButton imgUrl="bus.png" thisVehicle={new Vehicle("", "Trolleybus", VehicleType.TROLLEYBUS, 75, 700)} />
+            <PurchaseButton imgUrl="bus.png" thisVehicle={new Vehicle("", "Tram", VehicleType.TRAM, 100, 900)} />
+            <PurchaseButton imgUrl="bus.png" thisVehicle={new Vehicle("", "Train", VehicleType.TRAIN, 300, 2000)} />
         </div>
     </Column>
 

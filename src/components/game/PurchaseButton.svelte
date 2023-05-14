@@ -1,22 +1,20 @@
 <script lang="ts">
 	import type { GameState } from "$lib/GameState";
-	import { Vehicle, VehicleType } from "$lib/Vehicle";
+	import type { Vehicle } from "$lib/Vehicle";
 	import { generateUid } from "$lib/common";
 	import { getContext } from "svelte";
 	import type { Writable } from "svelte/store";
 
 	export let imgUrl: string;
-    export let label: string;
-    export let price: number;
-    export let vehicleType: VehicleType;
+    export let thisVehicle: Vehicle;
 
     let gameState: Writable<GameState> = getContext('gameState');
 
     $: purchase = () => {
-        let newGameState = { ...$gameState };
-        newGameState.bank.balance -= price;
-        newGameState.vehicles.push(new Vehicle(generateUid(), label, vehicleType, 50));
-        $gameState = newGameState;
+        if ($gameState.bank.balance < thisVehicle.price) return; // Message "not enough money"
+        thisVehicle.id = generateUid(); // Get a unique id for a new vehicle
+        $gameState.vehicles.push(thisVehicle);
+        $gameState.bank.balance -= thisVehicle.price;
     }
 </script>
 
@@ -35,6 +33,7 @@
     flex-1
 ">
     <span><img src={imgUrl} /></span>
-    <span>{label}</span>
-    <span>£{price}</span>
+    <span>{thisVehicle.name}</span>
+    <span>£{thisVehicle.price}</span>
+    <span>Capacity: {thisVehicle.capacity} riders</span>
 </button>

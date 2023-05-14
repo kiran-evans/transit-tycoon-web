@@ -15,6 +15,6 @@ export class Bank {
 
     public getChangeString = (): string => {
         const sign = this.in >= this.out ? "+" : "-";
-        return sign + "£" + new Intl.NumberFormat('en-GB').format(Math.abs(this.in - this.out));
+        return sign + "£" + new Intl.NumberFormat('en-GB').format(Math.abs(this.in - this.out)) + " per hour";
     }
 }
