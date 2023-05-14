@@ -1,13 +1,16 @@
 export class Time {
     private hour: number;
     private day: Day;
+    public hasTicked: boolean;
 
     constructor() {
         this.hour = 8;
         this.day = Day.MON;
+        this.hasTicked = false;
     }
 
     public doHour = () => {
+        this.hasTicked = true;
         this.hour++;
         this.day = Math.floor(this.hour / 24) % 7;
     }
@@ -27,7 +30,7 @@ export class Time {
     }
 
     public getWeekString = (): string => {
-        return "Week " + String(Math.ceil(this.hour / 24 / 7));
+        return "Week " + String(Math.floor(this.hour / 24 / 7) + 1);
     }
 }
 

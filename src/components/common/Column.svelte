@@ -7,6 +7,10 @@
     flex-1
     p-4
 ">
-    <h2>{title}</h2>
+    <h2 class="
+        text-l
+        font-bold
+        underline
+    ">{title}</h2>
     <slot />
 </div>

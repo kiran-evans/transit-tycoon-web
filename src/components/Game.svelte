@@ -12,11 +12,12 @@
     
     let gameState: Writable<GameState> = getContext('gameState');
     
-    $: setTimeout(() => {
-        $gameState.time.doHour();
-        $gameState = $gameState;
-    }, 2500);
-    
+    $: counter = setTimeout(() => {
+            $gameState.time.doHour();
+            $gameState = $gameState;
+        }, 2500);
+
+    clearTimeout(counter);    
 
 </script>
 
