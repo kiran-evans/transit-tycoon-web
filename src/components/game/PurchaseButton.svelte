@@ -23,17 +23,34 @@
     class="
     flex
     gap-2
-    border-2
-    border-blue-300
+    border
+    border-gray-100
     rounded
+    shadow
+    mb-2
     pr-2
-    py-2
-    font-bold
-    my-1
+    items-center
     flex-1
+    bg-gradient-to-b
+    from-gray-700
+    to-gray-900
+    hover:from-blue-700
+    hover:to-blue-900
+    relative
+    overflow-hidden
 ">
-    <span><img src={imgUrl} /></span>
-    <span>{thisVehicle.name}</span>
-    <span>£{thisVehicle.price}</span>
-    <span>Capacity: {thisVehicle.capacity} riders</span>
+    <img src={imgUrl} class="
+        h-16
+    " />
+
+    <span class="
+        text-white
+        font-black
+        text-2xl
+        drop-shadow
+    ">{thisVehicle.name}</span>
+
+    <span class="
+        font-bold
+    ">{"£" + new Intl.NumberFormat('en-GB').format(thisVehicle.price)}</span>
 </button>

@@ -10,24 +10,39 @@
     border-2
     border-white
     rounded
-    px-4
-    py-2
+    pr-3
     flex
     items-center
+    overflow-hidden
 ">
-    <span class="
-        text-white
-        font-bold
-        text-xl
-    ">{$gameState.bank.getBalanceString()}</span>
+    <img src="bank.jpg" class="
+        h-20
+        mr-3
+    " />
 
-    <span class="
-        {$gameState.bank.in >= $gameState.bank.out ? 'text-green-300 bg-green-900' : 'text-red-300 bg-red-900'}
-        ml-2
-        px-1
-        rounded-sm
+    <div class="
         flex
+        flex-col
         items-center
-    ">{$gameState.bank.getChangeString()}</span>
+        gap-1
+    ">
+        <div class="
+            text-white
+            font-bold
+            text-3xl
+        ">{$gameState.bank.getBalanceString()}</div>
+
+        <div class="
+            {$gameState.bank.in >= $gameState.bank.out ? 'text-green-300 bg-green-900' : 'text-red-300 bg-red-900'}
+            ml-2
+            px-2
+            py-[0.1em]
+            rounded-sm
+            flex
+            items-center
+        "><span class="
+            drop-shadow-sm
+        ">{$gameState.bank.getChangeString()}</span></div>
+    </div>
 
 </div>

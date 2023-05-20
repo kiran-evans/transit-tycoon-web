@@ -5,9 +5,12 @@
 
 <div class="
     text-center
-    bg-gray-200
-    p-2
+    bg-yellow-100
+    py-4
     rounded
+    shadow
+    border-2
+    border-gray-900
 ">
     <h1 class="
         text-lg
@@ -17,11 +20,11 @@
         tracking-wider
         font-serif
         leading-none
-        my-2
+        mb-2
     ">{headline}</h1>
 
     <p class="
-        text-gray-800
+        text-gray-700
         text-sm
         leading-none
     ">{description}</p>

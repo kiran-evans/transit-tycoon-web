@@ -52,7 +52,7 @@
 </div>
 
 <div class="
-    bg-gray-900
+    bg-gray-700
     flex
     flex-[8]
 ">
@@ -80,7 +80,7 @@
             flex
             flex-col
         ">
-            <PurchaseButton imgUrl="bus.png" thisVehicle={new Vehicle("", "Bus", VehicleType.BUS, 50, 500)} />
+            <PurchaseButton imgUrl="bus.jpg" thisVehicle={new Vehicle("", "Bus", VehicleType.BUS, 50, 500)} />
             <PurchaseButton imgUrl="bus.png" thisVehicle={new Vehicle("", "Trolleybus", VehicleType.TROLLEYBUS, 75, 700)} />
             <PurchaseButton imgUrl="bus.png" thisVehicle={new Vehicle("", "Tram", VehicleType.TRAM, 100, 900)} />
             <PurchaseButton imgUrl="bus.png" thisVehicle={new Vehicle("", "Train", VehicleType.TRAIN, 300, 2000)} />
