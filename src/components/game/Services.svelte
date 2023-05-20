@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { GameState } from "$lib/GameState";
 	import { Service } from "$lib/Service";
-	import { VehicleType } from "$lib/Vehicle";
+	import { Vehicle, VehicleType } from "$lib/Vehicle";
 	import { generateUid } from "$lib/common";
 	import { getContext } from "svelte";
 	import type { Writable } from "svelte/store";
@@ -17,6 +17,11 @@
         isCreatingService = false;
         $gameState.services.push(new Service(generateUid(), serviceName, serviceType, [], []));
         $gameState = $gameState;
+    }
+
+    $: addVehicle = () => {
+        $gameState.vehicles.push(new Vehicle("0", "Newbus", VehicleType.BUS, 50, 500));
+        $gameState.services[0].vehicles.push("0");
     }
 </script>
 
@@ -112,5 +117,7 @@
         ">{service.name} ({VehicleType[service.type]} service)</h2>
 
         <P>Vehicles on this service: {service.vehicles.length}</P>
+
+        <button on:click={addVehicle}>Add vehicle</button>
     </div>
 {/each}

@@ -15,19 +15,11 @@
     let gameState: Writable<GameState> = getContext('gameState');
     
     $: counter = setTimeout(() => {
-            $gameState.time.doHour();
+            $gameState.doHour();
             $gameState = $gameState;
         }, 2500); // 2500ms - one "hour" of in-game time = one minute in real time
 
     clearTimeout(counter);
-
-    $: getTotalCapacity = (): number => {
-        let total = 0;
-        $gameState.vehicles.forEach(v => {
-            total += v.capacity;
-        });
-        return total;
-    }
 
 </script>
 
@@ -44,7 +36,7 @@
 
     <Container>
         <P>Riders: {$gameState.riders}</P>
-        <P>Capacity: {getTotalCapacity()}</P>
+        <P>Capacity: {$gameState.getTotalCapacity()}</P>
     </Container>
 
     <Container>

@@ -1,4 +1,4 @@
-import type { Vehicle, VehicleType } from "./Vehicle";
+import type { VehicleType } from "./Vehicle";
 import type { Location } from "./common";
 
 export class Service {
@@ -6,14 +6,14 @@ export class Service {
     name: string;
     type: VehicleType;
     termini: Location[];
-    vehicles: Vehicle[];
+    vehicles: string[];
 
     constructor(
         id: string,
         name: string,
         type: VehicleType,
         termini: Location[],
-        vehicles: Vehicle[]
+        vehicles: string[]
     ) {
         this.id = id;
         this.name = name;

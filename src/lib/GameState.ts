@@ -17,4 +17,22 @@ export class GameState {
         this.services = [];
         this.vehicles = [];
     }
+
+    public doHour = () => {
+        this.time.hasTicked = true;
+        this.time.hour++;
+        this.time.day = Math.floor(this.time.hour / 24) % 7;
+
+        if (this.getTotalCapacity() > this.riders) this.riders++;
+        this.bank.in = this.riders * 10;
+        this.bank.balance += (this.bank.in - this.bank.out);
+    }
+
+    public getTotalCapacity = (): number => {
+        let total = 0;
+        this.vehicles.forEach(v => {
+            total += v.capacity;
+        });
+        return total;
+    }
 }

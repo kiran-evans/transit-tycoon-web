@@ -1,18 +1,12 @@
 export class Time {
-    private hour: number;
-    private day: Day;
-    public hasTicked: boolean;
+    hour: number;
+    day: Day;
+    hasTicked: boolean;
 
     constructor() {
         this.hour = 8;
         this.day = Day.MON;
         this.hasTicked = false;
-    }
-
-    public doHour = () => {
-        this.hasTicked = true;
-        this.hour++;
-        this.day = Math.floor(this.hour / 24) % 7;
     }
 
     public getDayString = (): string => {
