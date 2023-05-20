@@ -1,24 +1,27 @@
 import type { VehicleType } from "./Vehicle";
-import type { Location } from "./common";
 
 export class Service {
     id: string;
     name: string;
     type: VehicleType;
-    termini: Location[];
     vehicles: string[];
+    ticketPrice: number;
+    riders: number;
+    appeal: number;
 
     constructor(
         id: string,
         name: string,
         type: VehicleType,
-        termini: Location[],
-        vehicles: string[]
+        vehicles: string[],
+        ticketPrice: number
     ) {
         this.id = id;
         this.name = name;
         this.type = type;
-        this.termini = termini;
         this.vehicles = vehicles;
+        this.ticketPrice = ticketPrice;
+        this.riders = 0;
+        this.appeal = 50;
     }
 }

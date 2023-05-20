@@ -15,11 +15,12 @@
 
     $: createService = () => {
         isCreatingService = false;
-        $gameState.services.push(new Service(generateUid(), serviceName, serviceType, [], []));
+        $gameState.services.push(new Service(generateUid(), serviceName, serviceType, [], 3));
         $gameState = $gameState;
     }
 
     $: addVehicle = () => {
+        // Player chooses a vehicle to add to the service
         $gameState.vehicles.push(new Vehicle("0", "Newbus", VehicleType.BUS, 50, 500));
         $gameState.services[0].vehicles.push("0");
     }
@@ -115,6 +116,8 @@
             text-white
             font-bold
         ">{service.name} ({VehicleType[service.type]} service)</h2>
+
+        <P>Appeal: {service.appeal}</P>
 
         <P>Vehicles on this service: {service.vehicles.length}</P>
 

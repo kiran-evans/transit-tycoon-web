@@ -35,7 +35,7 @@
     </Container>
 
     <Container>
-        <P>Riders: {$gameState.riders}</P>
+        <P>Riders: {$gameState.getTotalRiders()}</P>
         <P>Capacity: {$gameState.getTotalCapacity()}</P>
     </Container>
 
