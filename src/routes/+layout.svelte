@@ -25,7 +25,7 @@
     <h1 class="
         flex
         items-center
-        text-3xl
+        text-xl
         font-black
         uppercase
     ">
@@ -35,7 +35,7 @@
 </header>
 
 <main class="
-    flex-[25]
+    flex-[30]
     overflow-y-auto
 ">
 

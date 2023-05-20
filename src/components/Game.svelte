@@ -8,6 +8,7 @@
 	import P from "./common/P.svelte";
 	import Bank from "./game/Bank.svelte";
 	import Clock from "./game/Clock.svelte";
+	import NewsFeed from "./game/NewsFeed.svelte";
 	import PurchaseButton from "./game/PurchaseButton.svelte";
     
     let gameState: Writable<GameState> = getContext('gameState');
@@ -41,6 +42,11 @@
     </Container>
 
     <Container>
+        <P>Riders: {$gameState.riders}</P>
+        <P>Capacity: {getTotalCapacity()}</P>
+    </Container>
+
+    <Container>
         <Bank />
     </Container>
 </div>
@@ -51,9 +57,8 @@
     flex-[8]
 ">
 
-    <Column title="Info">
-        <P>Riders: {$gameState.riders}</P>
-        <P>Capacity: {getTotalCapacity()}</P>
+    <Column title="News">
+        <NewsFeed />
     </Column>
 
     <Column title="Services">
