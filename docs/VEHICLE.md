@@ -1,0 +1,4 @@
+- Each vehicle is unique
+- Each vehicle can only be assigned to one service at a time
+- Each vehicle requires staff
+- Each vehicle has a maintenance cost

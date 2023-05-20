@@ -1,6 +1,8 @@
 <script lang="ts">
 	import type { GameState } from "$lib/GameState";
+	import { Service } from "$lib/Service";
 	import { Vehicle, VehicleType } from "$lib/Vehicle";
+	import { generateUid } from "$lib/common";
 	import { getContext } from "svelte";
 	import type { Writable } from "svelte/store";
 	import Column from "./common/Column.svelte";
@@ -26,6 +28,11 @@
             total += v.capacity;
         });
         return total;
+    }
+
+    $: createService = () => {
+        $gameState.services.push(new Service(generateUid(), VehicleType.BUS, [], []));
+        $gameState = $gameState;
     }
 
 </script>
@@ -62,6 +69,25 @@
     </Column>
 
     <Column title="Services">
+
+    <button on:click={createService} class="
+        border-2
+        border-gray-100
+        rounded
+        shadow
+        mb-2
+        px-2
+        bg-gradient-to-b
+        from-gray-700
+        to-gray-900
+        hover:from-blue-700
+        hover:to-blue-900
+        text-white
+        font-bold
+        text-xl
+        drop-shadow
+    ">+ Create a new service</button>
+
     {#each $gameState.services as service}
         <P>{service.id}</P>
     {/each}
