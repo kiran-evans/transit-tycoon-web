@@ -5,17 +5,18 @@
 	import { generateUid } from "$lib/common";
 	import { getContext } from "svelte";
 	import type { Writable } from "svelte/store";
+	import Input from "../common/Input.svelte";
 	import P from "../common/P.svelte";
 
     
     let gameState: Writable<GameState> = getContext('gameState');
     let isCreatingService = false;
-    let serviceName = "";
-    let serviceType = VehicleType.BUS;
+    $: newService = new Service(generateUid(), "", VehicleType.BUS, [], 0);
 
     $: createService = () => {
+        if (!newService.name) return;
         isCreatingService = false;
-        $gameState.services.push(new Service(generateUid(), serviceName, serviceType, [], 3));
+        $gameState.services.push(newService);
         $gameState = $gameState;
     }
 
@@ -67,15 +68,19 @@
             shadow
             flex
             flex-col
+            gap-2
         ">
             <h1 class="
                 text-white
                 font-bold
                 uppercase
-                mb-2
             ">Create a new service</h1>
 
-            <input placeholder="Name" type="text" bind:value={serviceName} class="
+            <label for="name">Name</label>
+            <Input id="name" type="text" bind:value={newService.name} />
+
+            <label for="serviceType">Service type</label>
+            <select bind:value={newService.type} id="serviceType" class="
                 text-white
                 py-1
                 px-2
@@ -83,7 +88,16 @@
                 bg-gray-900
                 hover:bg-gray-600
                 border
-            " />
+            ">
+                {#each Object.keys(VehicleType) as t}
+                    {#if !isNaN(Number(t))}
+                        <option value={t}>{VehicleType[Number(t)]}</option>
+                    {/if}
+                {/each}
+            </select>
+
+            <label for="price">Ticket price (£)</label>
+            <Input id="price" type="number" bind:value={newService.ticketPrice} min={0} max={Number.MAX_SAFE_INTEGER} />
 
             <button type="submit" on:click={createService} class="
                 mt-2
@@ -116,6 +130,8 @@
             text-white
             font-bold
         ">{service.name} ({VehicleType[service.type]} service)</h2>
+
+        <P>Ticket price: £{service.ticketPrice}</P>
 
         <P>Appeal: {service.appeal}</P>
 
