@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { GameState } from "$lib/GameState";
-	import { Vehicle, VehicleType } from "$lib/Vehicle";
 	import { getContext } from "svelte";
 	import type { Writable } from "svelte/store";
 	import Column from "./common/Column.svelte";
@@ -9,8 +8,9 @@
 	import Bank from "./game/Bank.svelte";
 	import Clock from "./game/Clock.svelte";
 	import NewsFeed from "./game/NewsFeed.svelte";
-	import PurchaseButton from "./game/PurchaseButton.svelte";
 	import Services from "./game/Services.svelte";
+	import Store from "./game/Store.svelte";
+	import Vehicles from "./game/Vehicles.svelte";
     
     let gameState: Writable<GameState> = getContext('gameState');
     
@@ -59,22 +59,11 @@
     </Column>
 
     <Column title="Garage">
-    {#each $gameState.vehicles as vehicle}
-        <P>{vehicle.id}</P>
-    {/each}
-
+        <Vehicles />
     </Column>
 
     <Column title="Store">
-        <div class="
-            flex
-            flex-col
-        ">
-            <PurchaseButton imgUrl="bus.jpg" thisVehicle={new Vehicle("", "Bus", VehicleType.BUS, 50, 500)} />
-            <PurchaseButton imgUrl="bus.png" thisVehicle={new Vehicle("", "Trolleybus", VehicleType.TROLLEYBUS, 75, 700)} />
-            <PurchaseButton imgUrl="bus.png" thisVehicle={new Vehicle("", "Tram", VehicleType.TRAM, 100, 900)} />
-            <PurchaseButton imgUrl="bus.png" thisVehicle={new Vehicle("", "Train", VehicleType.TRAIN, 300, 2000)} />
-        </div>
+        <Store />
     </Column>
 
 </div>

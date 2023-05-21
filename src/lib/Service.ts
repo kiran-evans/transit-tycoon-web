@@ -1,9 +1,8 @@
-import type { VehicleType } from "./Vehicle";
 
 export class Service {
     id: string;
     name: string;
-    type: VehicleType;
+    type: ServiceType;
     vehicles: string[];
     ticketPrice: number;
     riders: number;
@@ -12,7 +11,7 @@ export class Service {
     constructor(
         id: string,
         name: string,
-        type: VehicleType,
+        type: ServiceType,
         vehicles: string[],
         ticketPrice: number
     ) {
@@ -24,4 +23,11 @@ export class Service {
         this.riders = 0;
         this.appeal = 50;
     }
+}
+
+export enum ServiceType {
+    Bus,
+    Trolleybus,
+    Tram,
+    Train
 }

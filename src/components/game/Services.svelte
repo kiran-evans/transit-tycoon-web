@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { GameState } from "$lib/GameState";
-	import { Service } from "$lib/Service";
-	import { Vehicle, VehicleType } from "$lib/Vehicle";
+	import { Service, ServiceType } from "$lib/Service";
+	import { Bus } from "$lib/Vehicle";
 	import { generateUid } from "$lib/common";
 	import { getContext } from "svelte";
 	import type { Writable } from "svelte/store";
@@ -11,7 +11,7 @@
     
     let gameState: Writable<GameState> = getContext('gameState');
     let isCreatingService = false;
-    $: newService = new Service(generateUid(), "", VehicleType.BUS, [], 0);
+    $: newService = new Service(generateUid(), "", ServiceType.Bus, [], 0);
 
     $: createService = () => {
         if (!newService.name) return;
@@ -22,7 +22,7 @@
 
     $: addVehicle = () => {
         // Player chooses a vehicle to add to the service
-        $gameState.vehicles.push(new Vehicle("0", "Newbus", VehicleType.BUS, 50, 500));
+        $gameState.vehicles.push(new Bus());
         $gameState.services[0].vehicles.push("0");
     }
 </script>
@@ -89,9 +89,9 @@
                 hover:bg-gray-600
                 border
             ">
-                {#each Object.keys(VehicleType) as t}
+                {#each Object.keys(ServiceType) as t}
                     {#if !isNaN(Number(t))}
-                        <option value={t}>{VehicleType[Number(t)]}</option>
+                        <option value={t}>{ServiceType[Number(t)]}</option>
                     {/if}
                 {/each}
             </select>
@@ -129,7 +129,7 @@
         <h2 class="
             text-white
             font-bold
-        ">{service.name} ({VehicleType[service.type]} service)</h2>
+        ">{service.name} ({ServiceType[service.type]} service)</h2>
 
         <P>Ticket price: £{service.ticketPrice}</P>
 

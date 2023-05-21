@@ -1,26 +1,13 @@
 <script lang="ts">
-	import type { GameState } from "$lib/GameState";
 	import type { Vehicle } from "$lib/Vehicle";
-	import { generateUid } from "$lib/common";
-	import { getContext } from "svelte";
-	import type { Writable } from "svelte/store";
-
-	export let imgUrl: string;
+	import { createEventDispatcher } from "svelte";
+    
     export let thisVehicle: Vehicle;
 
-    let gameState: Writable<GameState> = getContext('gameState');
-
-    $: purchase = () => {
-        if ($gameState.bank.balance < thisVehicle.price) return; // Message "not enough money"
-        thisVehicle.id = generateUid(); // Get a unique id for a new vehicle
-        $gameState.vehicles.push(thisVehicle);
-        $gameState.bank.balance -= thisVehicle.price;
-    }
+    const dispatch = createEventDispatcher();
 </script>
 
-<button
-    on:click={purchase}
-    class="
+<button on:click={() => dispatch('click')} class="
     flex
     gap-2
     border
@@ -39,7 +26,7 @@
     relative
     overflow-hidden
 ">
-    <img src={imgUrl} class="
+    <img src={thisVehicle.imageUrl} alt={thisVehicle.constructor.name} class="
         h-16
     " />
 
@@ -48,7 +35,7 @@
         font-black
         text-2xl
         drop-shadow
-    ">{thisVehicle.name}</span>
+    ">{thisVehicle.constructor.name}</span>
 
     <span class="
         font-bold
