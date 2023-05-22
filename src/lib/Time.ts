@@ -1,12 +1,10 @@
 export class Time {
     second: number;
     day: Day;
-    hasTicked: boolean;
 
     constructor() {
         this.second = 8;
         this.day = Day.MON;
-        this.hasTicked = false;
     }
 
     public getDayString = (): string => {

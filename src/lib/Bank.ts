@@ -6,7 +6,7 @@ export class Bank {
     constructor(balance?: number) {
         this.balance = balance ?? 100;
         this.ticketPrice = 2;
-        this.priceModifier = 0.1;
+        this.priceModifier = 0.01;
     }
 
     public getBalanceString = (): string => {        

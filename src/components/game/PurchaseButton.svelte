@@ -14,8 +14,8 @@
         thisVehicle.id = generateUid(); // Get a unique id for a new vehicle
         $gameState.vehicles.push({...thisVehicle});
         $gameState.bank.balance -= thisVehicle.purchasePrice;
-        $gameState.bank.priceModifier *= 1.1; // Add 10% to the priceModifier each time a new vehicle is purchased
         thisVehicle.purchasePrice += Math.floor(thisVehicle.purchasePrice * $gameState.bank.priceModifier);
+        $gameState.bank.priceModifier *= 1.01; // Add 1% to the priceModifier each time a new vehicle is purchased
     }
 
 </script>
@@ -47,6 +47,7 @@
 
     <div class="
         flex
+        flex-1
         flex-col
         py-2
     ">

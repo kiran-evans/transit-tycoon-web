@@ -39,18 +39,18 @@ export class Bus extends Vehicle {
 
 export class Trolleybus extends Vehicle {
     constructor() {
-        super(VehicleType.Trolleybus, "An electric version of the bus.", 7, 700, "trolleybus.jpg");
+        super(VehicleType.Trolleybus, "An electric version of the bus.", 15, 5000, "trolleybus.jpg");
     }
 }
 
 export class Tram extends Vehicle {
     constructor() {
-        super(VehicleType.Tram, "Like a trolleybus, but a lot faster.", 10, 900, "tram.jpg");
+        super(VehicleType.Tram, "Like a trolleybus, but a lot faster.", 100, 25000, "tram.jpg");
     }
 }
 
 export class Train extends Vehicle {
     constructor() {
-        super(VehicleType.Train, "It's just a massive, fast tram.", 15, 2000, "train.jpg");
+        super(VehicleType.Train, "It's just a massive, fast tram.", 500, 500000, "train.jpg");
     }
 }

@@ -25,14 +25,12 @@ export class GameState {
         this.vehicles.forEach(v => {
             income += v.capacity * this.bank.ticketPrice;
             this.passengers.splice(0, v.capacity);
-            this.attractiveness += v.capacity;
         });
         
         this.bank.balance += income / 100;
 
         // Time
-        this.time.hasTicked = true;
-        this.time.second++;
+        this.time.second += 0.0025;
         this.time.day = Math.floor(this.time.second / 24) % 7;
     }
 
