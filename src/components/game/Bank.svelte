@@ -15,7 +15,7 @@
     items-center
     overflow-hidden
 ">
-    <img src="bank.jpg" class="
+    <img src="bank.jpg" alt="Bank" class="
         h-20
         mr-3
     " />

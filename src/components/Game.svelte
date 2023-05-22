@@ -8,18 +8,10 @@
 	import Bank from "./game/Bank.svelte";
 	import Clock from "./game/Clock.svelte";
 	import NewsFeed from "./game/NewsFeed.svelte";
-	import Services from "./game/Services.svelte";
 	import Store from "./game/Store.svelte";
 	import Vehicles from "./game/Vehicles.svelte";
     
     let gameState: Writable<GameState> = getContext('gameState');
-    
-    $: counter = setTimeout(() => {
-            $gameState.doHour();
-            $gameState = $gameState;
-        }, 2500); // 2500ms - one "hour" of in-game time = one minute in real time
-
-    clearTimeout(counter);
 
 </script>
 
@@ -35,7 +27,6 @@
     </Container>
 
     <Container>
-        <P>Riders: {$gameState.getTotalRiders()}</P>
         <P>Capacity: {$gameState.getTotalCapacity()}</P>
     </Container>
 
@@ -52,10 +43,6 @@
 
     <Column title="News">
         <NewsFeed />
-    </Column>
-
-    <Column title="Services">
-        <Services />
     </Column>
 
     <Column title="Garage">

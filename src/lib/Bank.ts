@@ -9,12 +9,12 @@ export class Bank {
         this.out = 0;
     }
 
-    public getBalanceString = (): string => {
+    public getBalanceString = (): string => {        
         return "£" + new Intl.NumberFormat('en-GB').format(this.balance);
     }
 
     public getChangeString = (): string => {
         const sign = this.in >= this.out ? "+" : "-";
-        return sign + "£" + new Intl.NumberFormat('en-GB').format(Math.abs(this.in - this.out)) + " per hour";
+        return sign + "£" + new Intl.NumberFormat('en-GB').format(Math.abs(this.in - this.out)) + " per second";
     }
 }

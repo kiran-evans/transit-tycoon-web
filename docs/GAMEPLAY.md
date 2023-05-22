@@ -1,4 +1,2 @@
-1. Create service
-2. Buy vehicle
-3. Assign vehicle to service
-4. Riders come
+1. Buy a vehicle
+2. Riders pay the vehicle's ticket price

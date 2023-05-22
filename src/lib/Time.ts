@@ -1,10 +1,10 @@
 export class Time {
-    hour: number;
+    second: number;
     day: Day;
     hasTicked: boolean;
 
     constructor() {
-        this.hour = 8;
+        this.second = 8;
         this.day = Day.MON;
         this.hasTicked = false;
     }
@@ -14,7 +14,7 @@ export class Time {
     }
 
     public getTimeString = (): string => {
-        const time = Math.floor(this.hour % 24);
+        const time = Math.floor(this.second % 24);
         let timeString = "";
         
         if (time < 10) timeString += "0";
@@ -24,7 +24,7 @@ export class Time {
     }
 
     public getWeekString = (): string => {
-        return "Week " + String(Math.floor(this.hour / 24 / 7) + 1);
+        return "Week " + String(Math.floor(this.second / 24 / 7) + 1);
     }
 }
 

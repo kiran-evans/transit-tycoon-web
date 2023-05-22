@@ -1,11 +1,24 @@
 <script lang="ts">
 	import { GameState } from "$lib/GameState";
-	import { setContext } from "svelte";
+	import { onDestroy, onMount, setContext } from "svelte";
 	import { writable } from "svelte/store";
 
-    let gameState = writable(new GameState(5000));
+    let gameState = writable(new GameState(500));
 
     setContext('gameState', gameState);
+    
+    let interval: NodeJS.Timeout;
+
+    onMount(() => {
+        interval = setInterval(() => {
+            $gameState.doTick();
+            $gameState = $gameState;
+        }, 1000);
+    });
+
+    onDestroy(() => {
+        clearInterval(interval);
+    })
 
 </script>
 

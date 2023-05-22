@@ -1,13 +1,18 @@
 <script lang="ts">
+	import type { GameState } from "$lib/GameState";
 	import type { Vehicle } from "$lib/Vehicle";
-	import { createEventDispatcher } from "svelte";
+	import { createEventDispatcher, getContext } from "svelte";
+	import type { Writable } from "svelte/store";
     
     export let thisVehicle: Vehicle;
 
     const dispatch = createEventDispatcher();
+
+    let gameState: Writable<GameState> = getContext('gameState');
+
 </script>
 
-<button on:click={() => dispatch('click')} class="
+<button on:click={() => dispatch('click')} disabled={$gameState.bank.balance < thisVehicle.purchasePrice} class="
     flex
     gap-2
     border
@@ -25,19 +30,37 @@
     hover:to-blue-900
     relative
     overflow-hidden
+    disabled:opacity-50
+    disabled:cursor-not-allowed
 ">
     <img src={thisVehicle.imageUrl} alt={thisVehicle.constructor.name} class="
         h-16
     " />
 
-    <span class="
-        text-white
-        font-black
-        text-2xl
-        drop-shadow
-    ">{thisVehicle.constructor.name}</span>
+    <div class="
+        flex
+        flex-col
+    ">
+        <div class="
+            flex
+            items-center
+            gap-2
+        ">
+            <span class="
+                text-white
+                font-black
+                text-2xl
+                drop-shadow
+            ">{thisVehicle.constructor.name}</span>
 
-    <span class="
-        font-bold
-    ">{"£" + new Intl.NumberFormat('en-GB').format(thisVehicle.price)}</span>
+            <span class="
+                font-bold
+            ">{"£" + new Intl.NumberFormat('en-GB').format(thisVehicle.purchasePrice)}</span>
+        </div>
+
+        <span class="
+            text-xs
+        ">{thisVehicle.description} Generates {"£" + new Intl.NumberFormat('en-GB').format(thisVehicle.ticketPrice)} per second.</span>
+    
+    </div>
 </button>

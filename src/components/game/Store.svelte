@@ -9,10 +9,10 @@
     let gameState: Writable<GameState> = getContext('gameState');
 
     const purchase = (thisVehicle: Vehicle) => {
-        if ($gameState.bank.balance < thisVehicle.price) return; // Message "not enough money"
+        if ($gameState.bank.balance < thisVehicle.purchasePrice) return; // Message "not enough money"
         thisVehicle.id = generateUid(); // Get a unique id for a new vehicle
         $gameState.vehicles.push(thisVehicle);
-        $gameState.bank.balance -= thisVehicle.price;        
+        $gameState.bank.balance -= thisVehicle.purchasePrice;
     }
 </script>
 
