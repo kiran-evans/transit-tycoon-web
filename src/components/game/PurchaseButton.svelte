@@ -1,18 +1,25 @@
 <script lang="ts">
 	import type { GameState } from "$lib/GameState";
 	import type { Vehicle } from "$lib/Vehicle";
-	import { createEventDispatcher, getContext } from "svelte";
+	import { generateUid } from "$lib/common";
+	import { getContext } from "svelte";
 	import type { Writable } from "svelte/store";
     
     export let thisVehicle: Vehicle;
 
-    const dispatch = createEventDispatcher();
-
     let gameState: Writable<GameState> = getContext('gameState');
+
+    $: purchase = () => {        
+        if ($gameState.bank.balance < thisVehicle.purchasePrice) return; // Message "not enough money"
+        thisVehicle.id = generateUid(); // Get a unique id for a new vehicle
+        $gameState.vehicles.push({...thisVehicle});
+        $gameState.bank.balance -= thisVehicle.purchasePrice;
+        thisVehicle.purchasePrice *= 1.1; // Add 10% to the price each time a new vehicle is purchased
+    }
 
 </script>
 
-<button on:click={() => dispatch('click')} disabled={$gameState.bank.balance < thisVehicle.purchasePrice} class="
+<button on:click={purchase} disabled={$gameState.bank.balance < thisVehicle.purchasePrice} class="
     flex
     gap-2
     border

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { GameState } from "$lib/GameState";
+	import { VehicleType } from "$lib/Vehicle";
 	import { getContext } from "svelte";
 	import type { Writable } from "svelte/store";
 	import P from "../common/P.svelte";
@@ -23,7 +24,7 @@
         <h2 class="
             text-white
             font-bold
-        ">{v.name} ({v.constructor.name})</h2>
+        ">{VehicleType[v.type]}</h2>
 
         <P>{v.id}</P>
 

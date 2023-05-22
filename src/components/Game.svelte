@@ -1,7 +1,4 @@
 <script lang="ts">
-	import type { GameState } from "$lib/GameState";
-	import { getContext } from "svelte";
-	import type { Writable } from "svelte/store";
 	import Column from "./common/Column.svelte";
 	import Container from "./common/Container.svelte";
 	import Bank from "./game/Bank.svelte";
@@ -10,8 +7,6 @@
 	import Passengers from "./game/Passengers.svelte";
 	import Store from "./game/Store.svelte";
 	import Vehicles from "./game/Vehicles.svelte";
-    
-    let gameState: Writable<GameState> = getContext('gameState');
 
 </script>
 

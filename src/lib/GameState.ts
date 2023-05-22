@@ -20,13 +20,12 @@ export class GameState {
 
     public doTick = () => {
         // Passengers
-        for (let i = 0; i < this.attractiveness; i++) {
+        for (let i = 0; i < this.attractiveness * 2; i++) {
             // Add a new Passenger for each attractiveness point
             this.passengers.push(new Passenger());
         }
 
         // Vehicles
-        this.bank.in = 0;
         this.vehicles.forEach(v => {
             if (this.passengers.length <= v.capacity) {
                 // If this vehicle enough capacity to collect every passenger
@@ -37,15 +36,13 @@ export class GameState {
                 this.bank.balance += v.capacity * this.bank.ticketPrice;
                 this.passengers.splice(0, v.capacity);
             }
+            this.attractiveness += Math.floor(v.capacity / 100);
         });        
 
         // Time
         this.time.hasTicked = true;
         this.time.second++;
         this.time.day = Math.floor(this.time.second / 24) % 7;
-
-        // Bank
-        this.bank.balance += (this.bank.in - this.bank.out);
     }
 
     public getTotalCapacity = (): number => {
@@ -60,5 +57,14 @@ export class GameState {
         // Set the passengers to the same array, excluding the one provided
         this.bank.balance += this.bank.ticketPrice;
         this.passengers = this.passengers.filter(p => p.id !== passenger.id);
+    }
+
+    public getChange = (): number => {
+        let change = 0;
+        this.vehicles.forEach(v => {
+            if (this.passengers.length < v.capacity) change = this.passengers.length * this.bank.ticketPrice;
+            else change += v.capacity * this.bank.ticketPrice;
+        });
+        return change;
     }
 }

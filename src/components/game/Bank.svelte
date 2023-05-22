@@ -33,7 +33,7 @@
         ">{$gameState.bank.getBalanceString()}</span>
 
         <div class="
-            {$gameState.bank.in >= $gameState.bank.out ? 'text-green-300 bg-green-900' : 'text-red-300 bg-red-900'}
+            {$gameState.getChange() >= 0 ? 'text-green-300 bg-green-900' : 'text-red-300 bg-red-900'}
             ml-2
             px-2
             py-[0.1em]
@@ -42,7 +42,7 @@
             items-center
         "><span class="
             drop-shadow-sm
-        ">{$gameState.bank.getChangeString()}</span></div>
+        ">£{$gameState.getChange()} per second</span></div>
     </div>
 </div>
 

@@ -25,10 +25,9 @@
     flex-wrap
     gap-1
     justify-between
-    border
-    rounded
     overflow-auto
     max-h-full
+    mt-4
 ">
     {#each $gameState.passengers as p}
         <button on:click={(e) => handleClick(e, p)} class="
