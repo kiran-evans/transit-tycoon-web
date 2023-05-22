@@ -1,4 +1,5 @@
 import { Bank } from "./Bank";
+import type { Passenger } from "./Passenger";
 import { Time } from "./Time";
 import type { Vehicle } from "./Vehicle";
 
@@ -6,18 +7,20 @@ export class GameState {
     time: Time;
     bank: Bank;
     vehicles: Vehicle[];
+    passengers: Passenger[];
 
     constructor(bankBalance?: number) {
         this.time = new Time();
         this.bank = new Bank(bankBalance);
         this.vehicles = [];
+        this.passengers = [];
     }
 
     public doTick = () => {
         // Vehicles
         this.bank.in = 0;
         this.vehicles.forEach(v => {         
-            this.bank.in += v.ticketPrice;
+            this.bank.in += v.pps * this.bank.ticketPrice;
         });        
 
         // Time
@@ -32,7 +35,7 @@ export class GameState {
     public getTotalCapacity = (): number => {
         let total = 0;
         this.vehicles.forEach(v => {
-            total += v.capacity;
+            total += v.pps;
         });
         return total;
     }

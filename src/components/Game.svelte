@@ -4,10 +4,10 @@
 	import type { Writable } from "svelte/store";
 	import Column from "./common/Column.svelte";
 	import Container from "./common/Container.svelte";
-	import P from "./common/P.svelte";
 	import Bank from "./game/Bank.svelte";
 	import Clock from "./game/Clock.svelte";
 	import NewsFeed from "./game/NewsFeed.svelte";
+	import Passengers from "./game/Passengers.svelte";
 	import Store from "./game/Store.svelte";
 	import Vehicles from "./game/Vehicles.svelte";
     
@@ -27,7 +27,7 @@
     </Container>
 
     <Container>
-        <P>Capacity: {$gameState.getTotalCapacity()}</P>
+        <NewsFeed />
     </Container>
 
     <Container>
@@ -41,8 +41,8 @@
     flex-[8]
 ">
 
-    <Column title="News">
-        <NewsFeed />
+    <Column title="Passengers">
+        <Passengers />
     </Column>
 
     <Column title="Garage">

@@ -2,11 +2,13 @@ export class Bank {
     balance: number;
     in: number;
     out: number;
+    ticketPrice: number;
 
     constructor(balance?: number) {
         this.balance = balance ?? 0;
         this.in = 0;
         this.out = 0;
+        this.ticketPrice = 2;
     }
 
     public getBalanceString = (): string => {        

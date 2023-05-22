@@ -26,11 +26,11 @@
         items-center
         gap-1
     ">
-        <div class="
+        <span class="
             text-white
             font-bold
             text-3xl
-        ">{$gameState.bank.getBalanceString()}</div>
+        ">{$gameState.bank.getBalanceString()}</span>
 
         <div class="
             {$gameState.bank.in >= $gameState.bank.out ? 'text-green-300 bg-green-900' : 'text-red-300 bg-red-900'}
@@ -44,5 +44,18 @@
             drop-shadow-sm
         ">{$gameState.bank.getChangeString()}</span></div>
     </div>
+</div>
 
+<div class="
+    flex
+    justify-center
+    mt-2
+    font-bold
+    text-white
+    border-2
+    rounded
+    px-4
+    py-2
+">
+    Ticket price: £{$gameState.bank.ticketPrice}
 </div>

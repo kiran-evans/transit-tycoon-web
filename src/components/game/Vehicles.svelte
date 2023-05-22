@@ -27,7 +27,7 @@
 
         <P>{v.id}</P>
 
-        <P>Capacity: {v.capacity}</P>
+        <P>Capacity: {v.pps}</P>
 
         <P>{v.imageUrl}</P>
     </div>

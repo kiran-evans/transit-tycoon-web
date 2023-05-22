@@ -40,6 +40,7 @@
     <div class="
         flex
         flex-col
+        py-2
     ">
         <div class="
             flex
@@ -60,7 +61,9 @@
 
         <span class="
             text-xs
-        ">{thisVehicle.description} Generates {"£" + new Intl.NumberFormat('en-GB').format(thisVehicle.ticketPrice)} per second.</span>
+            text-left
+            leading-none
+        ">{thisVehicle.description} Collects {thisVehicle.pps} passengers per second.</span>
     
     </div>
 </button>

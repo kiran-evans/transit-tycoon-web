@@ -1,3 +1,4 @@
 - Each vehicle is unique
 - Each vehicle requires staff
 - Each vehicle has a maintenance cost
+- Vehicles collect passengers (up to and including their capacity)

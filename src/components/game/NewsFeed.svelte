@@ -6,6 +6,7 @@
 <div class="
     text-center
     bg-yellow-100
+    px-2
     py-4
     rounded
     shadow

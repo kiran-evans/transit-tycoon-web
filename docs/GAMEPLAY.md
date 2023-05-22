@@ -1,2 +1,3 @@
-1. Buy a vehicle
-2. Riders pay the vehicle's ticket price
+1. Collect passengers by clicking on them
+2. Passengers pay the ticket price when they have been collected
+3. Vehicles collect passengers automatically, up to their capacity
