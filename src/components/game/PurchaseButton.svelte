@@ -63,7 +63,7 @@
             text-xs
             text-left
             leading-none
-        ">{thisVehicle.description} Collects {thisVehicle.pps} passengers per second.</span>
+        ">{thisVehicle.description} Collects up to {thisVehicle.capacity} passengers per second.</span>
     
     </div>
 </button>

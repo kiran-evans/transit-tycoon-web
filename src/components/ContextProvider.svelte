@@ -3,7 +3,7 @@
 	import { onDestroy, onMount, setContext } from "svelte";
 	import { writable } from "svelte/store";
 
-    let gameState = writable(new GameState(500));
+    let gameState = writable(new GameState());
 
     setContext('gameState', gameState);
     

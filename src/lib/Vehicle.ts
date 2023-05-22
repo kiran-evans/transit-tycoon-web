@@ -4,21 +4,21 @@ export class Vehicle {
     id: string;
     name: string;
     description: string;
-    pps: number;
+    capacity: number;
     purchasePrice: number;
     imageUrl: string;
 
     constructor(
         name: string,
         description: string,
-        pps: number,
+        capacity: number,
         purchasePrice: number,
         imageUrl: string
     ) {
         this.id = generateUid();
         this.name = name;
         this.description = description;
-        this.pps = pps;
+        this.capacity = capacity;
         this.purchasePrice = purchasePrice;
         this.imageUrl = imageUrl;
     }
@@ -28,7 +28,7 @@ export class Bus extends Vehicle {
     constructor(
         name?: string
     ) {
-        super(name ?? "New Bus", "A basic vehicle.", 50, 500, "bus.jpg");
+        super(name ?? "New Bus", "A basic vehicle.", 50, 50, "bus.jpg");
     }
 }
 
