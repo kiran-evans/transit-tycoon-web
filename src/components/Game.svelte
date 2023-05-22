@@ -3,10 +3,10 @@
 	import Container from "./common/Container.svelte";
 	import Bank from "./game/Bank.svelte";
 	import Clock from "./game/Clock.svelte";
+	import Garage from "./game/Garage.svelte";
 	import NewsFeed from "./game/NewsFeed.svelte";
 	import Passengers from "./game/Passengers.svelte";
 	import Store from "./game/Store.svelte";
-	import Vehicles from "./game/Vehicles.svelte";
 
 </script>
 
@@ -41,7 +41,7 @@
     </Column>
 
     <Column title="Garage">
-        <Vehicles />
+        <Garage />
     </Column>
 
     <Column title="Store">

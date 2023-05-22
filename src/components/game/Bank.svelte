@@ -42,7 +42,7 @@
             items-center
         "><span class="
             drop-shadow-sm
-        ">£{$gameState.getChange()} per second</span></div>
+        ">{"£" + new Intl.NumberFormat('en-GB').format($gameState.getChange())} per second</span></div>
     </div>
 </div>
 

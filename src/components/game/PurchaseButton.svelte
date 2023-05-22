@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { GameState } from "$lib/GameState";
-	import type { Vehicle } from "$lib/Vehicle";
+	import { VehicleType, type Vehicle } from "$lib/Vehicle";
 	import { generateUid } from "$lib/common";
 	import { getContext } from "svelte";
 	import type { Writable } from "svelte/store";
@@ -14,7 +14,8 @@
         thisVehicle.id = generateUid(); // Get a unique id for a new vehicle
         $gameState.vehicles.push({...thisVehicle});
         $gameState.bank.balance -= thisVehicle.purchasePrice;
-        thisVehicle.purchasePrice *= 1.1; // Add 10% to the price each time a new vehicle is purchased
+        $gameState.bank.priceModifier *= 1.1; // Add 10% to the priceModifier each time a new vehicle is purchased
+        thisVehicle.purchasePrice += Math.floor(thisVehicle.purchasePrice * $gameState.bank.priceModifier);
     }
 
 </script>
@@ -51,6 +52,7 @@
     ">
         <div class="
             flex
+            flex-1
             items-center
             gap-2
         ">
@@ -64,13 +66,25 @@
             <span class="
                 font-bold
             ">{"£" + new Intl.NumberFormat('en-GB').format(thisVehicle.purchasePrice)}</span>
+
+            {#if $gameState.getNumberOfVehicles()[VehicleType[thisVehicle.type].toLowerCase()] > 0}
+                <span class="
+                    font-black
+                    opacity-40
+                    text-2xl
+                    italic
+                    flex-1
+                    text-right
+                    drop-shadow
+                ">{$gameState.getNumberOfVehicles()[VehicleType[thisVehicle.type].toLowerCase()]}</span>
+            {/if}
         </div>
 
         <span class="
             text-xs
             text-left
             leading-none
-        ">{thisVehicle.description} Collects up to {thisVehicle.capacity} passengers per second.</span>
+        ">{thisVehicle.description} Collects {thisVehicle.capacity} passengers per second.</span>
     
     </div>
 </button>

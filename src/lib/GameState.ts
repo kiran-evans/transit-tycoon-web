@@ -1,7 +1,7 @@
 import { Bank } from "./Bank";
-import { Passenger } from "./Passenger";
+import type { Passenger } from "./Passenger";
 import { Time } from "./Time";
-import type { Vehicle } from "./Vehicle";
+import { VehicleType, type Vehicle } from "./Vehicle";
 
 export class GameState {
     time: Time;
@@ -19,25 +19,16 @@ export class GameState {
     }
 
     public doTick = () => {
-        // Passengers
-        for (let i = 0; i < this.attractiveness * 2; i++) {
-            // Add a new Passenger for each attractiveness point
-            this.passengers.push(new Passenger());
-        }
+        let income = 0;
 
         // Vehicles
         this.vehicles.forEach(v => {
-            if (this.passengers.length <= v.capacity) {
-                // If this vehicle enough capacity to collect every passenger
-                this.bank.balance += this.passengers.length * this.bank.ticketPrice;
-                this.passengers = [];
-            } else {
-                // If there are more passengers than this vehicle can carry
-                this.bank.balance += v.capacity * this.bank.ticketPrice;
-                this.passengers.splice(0, v.capacity);
-            }
-            this.attractiveness += Math.floor(v.capacity / 100);
-        });        
+            income += v.capacity * this.bank.ticketPrice;
+            this.passengers.splice(0, v.capacity);
+            this.attractiveness += v.capacity;
+        });
+        
+        this.bank.balance += income / 100;
 
         // Time
         this.time.hasTicked = true;
@@ -62,9 +53,23 @@ export class GameState {
     public getChange = (): number => {
         let change = 0;
         this.vehicles.forEach(v => {
-            if (this.passengers.length < v.capacity) change = this.passengers.length * this.bank.ticketPrice;
-            else change += v.capacity * this.bank.ticketPrice;
+            change += v.capacity * this.bank.ticketPrice;
         });
         return change;
+    }
+
+    public getNumberOfVehicles = () => {
+        const result: { [key: string]: number } = {
+            bus: 0,
+            trolleybus: 0,
+            tram: 0,
+            train: 0
+        }
+
+        this.vehicles.forEach(v => {
+            result[VehicleType[v.type].toLowerCase()]++;
+        });
+
+        return result;
     }
 }

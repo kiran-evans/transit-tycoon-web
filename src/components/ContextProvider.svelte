@@ -13,7 +13,7 @@
         interval = setInterval(() => {
             $gameState.doTick();
             $gameState = $gameState;
-        }, 1000);
+        }, 10);
     });
 
     onDestroy(() => {
